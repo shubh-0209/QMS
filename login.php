@@ -13,7 +13,7 @@
                 <h2>LOGIN</h2>
             </div>
             <div class="card-body d-flex justify-content-center">
-                <form action="callback/login_callback.php" method="post">
+                <form action="admin/callback/login_callback.php" method="post">
                     <input type="email" name="email" class="form-control mb-3" id="email" placeholder="Enter Your Email" required>
                     <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Enter Password" required>
                     <input type="submit" class="form-control mb-3 bg-success" value="LOGIN" class="sub" name="submit">

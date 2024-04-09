@@ -1,5 +1,5 @@
 <?php
-include "../includes/config.php";
+include "../config/config.php";
 
 if(isset($_POST['submit'])){
     $subject = $_POST['subject'];

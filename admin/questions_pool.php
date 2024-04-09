@@ -1,6 +1,11 @@
 <?php
 
-include "../includes/config.php";
+include "config/config.php";
+
+if(!isset($_SESSION['admin'])){
+  echo "<script>window.location.href='../login.php'</script>";
+  exit();
+}
 
 $qry = "SELECT * FROM pools";
 $result = $conn->query($qry);
@@ -46,20 +51,58 @@ if($result->num_rows>0){
                     Admin Action
                 </a>
                 <ul class="dropdown-menu bg-light" style="border-radius:25px;padding:20px;overflow:hidden" data-bs-popper="static">
-                    <li><a class="dropdown-item" href="create_newQuiz.php">Create New Quiz</a></li>
+                    <li><a class="dropdown-item" href="create_quiz.php">Create New Quiz</a></li>
                     
                 <li><a class="dropdown-item" href="all_quiz.php">All Quiz</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="add_newQues.php">Add New Question Pool</a></li>
+                    <li><a class="dropdown-item" href="add_pool.php">Add New Question Pool</a></li>
                 </ul>
             </li>
             </ul>
             <form class="d-flex" role="search">
+              <button type="button" class="btn btn-outline-success mx-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Upload Questions
+              </button>
               <button class="btn btn-outline-danger" type="submit">Logout</button>
             </form>
           </div>
         </div>
+    
+        <!-- Modal -->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <form action="add_ques.php" method="post" enctype="multipart/form-data">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Upload Questions to Pool</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <label for="">Question Pool</label>
+                <select name="question_pool" class="form-select mb-3" id="" class="form-control">
+                    
+                    <?php
+                    foreach ($result as $r2) {
+                      echo '<option value="' . str_replace(' ', '_', $r2["name"]) . '">' . $r2["name"] . '</option>';
+                    }
+                    ?>
+
+                </select>
+            <label for="">Upload File</label>
+            <input type="file" name="file" class="form-control mb-3" id="" placeholder="Upload CSV File" accept=".csv">
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+            <button class="btn btn-outline-success" type="submit" name="submit">Upload</button>
+        </div>
+    </form>
+</div>
+  </div>
+</div>
+
       </nav>
+      
 
       <?php
               foreach ($result as $r) {

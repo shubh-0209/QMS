@@ -1,3 +1,39 @@
+<?php
+include "config/config.php";
+
+if(isset($_POST['submit'])){
+    $name = str_replace(" ", "_", $_POST['subject']);
+    $subject = $_POST['subject'];
+    $description = $_POST['description'];
+
+    $sql = "CREATE TABLE `$name` (
+        `id` int(11) NOT NULL AUTO_INCREMENT,
+        `question` varchar(255) NOT NULL,
+        `option1` varchar(255) NOT NULL,
+        `option2` varchar(255) NOT NULL,
+        `option3` varchar(255) NOT NULL,
+        `option4` varchar(255) NOT NULL,
+        `answer` varchar(255) NOT NULL,
+        PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4; ";
+   
+    $qry = "INSERT INTO pools VALUES('', '$subject', '$description')";
+
+    if($conn->query($sql) == TRUE){
+      if($conn->query($qry) == TRUE){
+        echo "<script>alert('Added Successfully!');</script>";
+        echo "<script>window.location.href='questions_pool.php';</script>";
+      }
+    }
+    else{
+      echo '<script> alert("Failed to Add Question Pool"); </script>';
+    }
+         
+  }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,11 +81,11 @@
                     Admin Action
                 </a>
                 <ul class="dropdown-menu bg-dark" style="border-radius:25px;padding:20px;overflow:hidden" data-bs-popper="static">
-                    <li><a class="dropdown-item" href="create_newQuiz.php">Create New Quiz</a></li>
+                    <li><a class="dropdown-item" href="create_quiz.php">Create New Quiz</a></li>
                     
                 <li><a class="dropdown-item" href="all_quiz.php">All Quiz</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="add_newQues.php">Add New Question Pool</a></li>
+                    <li><a class="dropdown-item" href="add_pool.php">Add New Question Pool</a></li>
                 </ul>
             </li>
             </ul>
@@ -65,7 +101,7 @@
             <div class="card my-5 p-3" style="border-radius:30px">
         <h1 class="m-auto my-2">Add New Question Pool</h1>
         <div class="card-body">
-            <form action="../callback/add_newQues_callback.php" method="post">
+            <form action="" method="post">
                 <label for="subject">Subject</label><br>
                  <input class="subject form-control" type="text" placeholder="Enter Subject Name" name="subject" required><br><br>
                  <label for="description">Description</label><br>

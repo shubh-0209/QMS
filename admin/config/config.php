@@ -6,7 +6,6 @@ $pass = '';
 $db = 'qms';
 $tz = 'Asia/Kolkata';
 
-session_start();
 
 date_default_timezone_set($tz);
 
@@ -16,6 +15,8 @@ if($conn -> connect_error){
     $connect_error = $conn -> connect_error;
     echo $connect_error;
 }
+
+session_start();
 
 // if($_POST['logout']){
 //     session_destroy();

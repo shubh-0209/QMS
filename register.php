@@ -13,7 +13,7 @@
                 <h2>Register</h2>
             </div>
             <div class="card-body d-flex justify-content-center">
-                <form action="callback/register_callback.php" method="post">
+                <form action="admin/callback/register_callback.php" method="post">
                     <input type="text" class="form-control mb-3" name="name" id="name" placeholder="Enter Your Name" required>
                     <input type="number" name="roll" class="form-control mb-3" id="roll" placeholder="Enter Your Roll Number" required>
                     <input type="email" name="email" class="form-control mb-3" id="email" placeholder="Enter Your Email" required>

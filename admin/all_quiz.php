@@ -33,11 +33,11 @@
                     Admin Action
                 </a>
                 <ul class="dropdown-menu bg-light" style="border-radius:25px;padding:20px;overflow:hidden" data-bs-popper="static">
-                    <li><a class="dropdown-item" href="create_newQuiz.php">Create New Quiz</a></li>
+                    <li><a class="dropdown-item" href="create_quiz.php">Create New Quiz</a></li>
                     
                 <li><a class="dropdown-item" href="all_quiz.php">All Quiz</a></li>
                     <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="add_newQues.php">Add New Question Pool</a></li>
+                    <li><a class="dropdown-item" href="add_pool.php">Add New Question Pool</a></li>
                 </ul>
             </li>
             </ul>
